@@ -1,0 +1,41 @@
+---
+title: "latenthw1"
+author: "Tatini Mal-Sarkar"
+date: "2/7/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(tidyverse)
+library(psych)
+library(GPArotation)
+```
+
+```{r import}
+hw1_data = read.csv("./data/genetictestingrawdata.csv", head = TRUE, sep = ",")
+attach(hw1_data)
+genetic <- cbind(C7, C10, C12, C13, C16, C20)
+```
+
+```{r eigen_poly}
+gen_par <- fa.parallel.poly(genetic)
+str(gen_par)
+gen_par$pc.values
+gen_par$pc.sim$mean
+```
+
+```{r eigen_pear}
+genparpear <- fa.parallel(genetic)
+str(genparpear)
+genparpear$pc.values
+#genparpear$pc.sim$mean
+```
+
+```{r alpha_del}
+genalph <- alpha(genetic)
+genalph
+```
+
+
