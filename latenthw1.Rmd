@@ -14,9 +14,13 @@ library(GPArotation)
 ```
 
 ```{r import}
-hw1_data = read.csv("./data/genetictestingrawdata.csv", head = TRUE, sep = ",")
+hw1_data = read_csv("./data/genetictestingrawdata.csv") %>% 
+  mutate_if(is.character, as.numeric)
 attach(hw1_data)
-genetic <- cbind(C7, C10, C12, C13, C16, C20)
+
+genetic <- cbind(C7, C10, C12, C13, C16, C20) 
+
+summary(genetic)
 ```
 
 ```{r eigen_poly}
